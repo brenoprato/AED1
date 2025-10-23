@@ -6,19 +6,20 @@ void countingSort(int arr[], int n) {
     int range = max - min + 1;
     
     int *count = (int*)calloc(range, sizeof(int));
-    
-    // Conta a frequência de cada altura
+
     for(int i = 0; i < n; i++) {
         count[arr[i] - min]++;
     }
     
-    // Vetor recebe alturas
+    int index2 = 0;
     int index = 0;
-    for (int i = 0; i < range; i++){
-        while(count[i] > 0){
-            arr[index] = i+min; 
-            index++;
-            count[i]--;
+    while(index2 < range){
+        if(count[index2] > 0){
+            arr[index] = index2 + min; 
+            index++;  
+            count[index2]--;
+        }else{
+            index2++;
         }
     }
     
